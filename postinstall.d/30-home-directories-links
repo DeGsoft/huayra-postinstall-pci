@@ -5,16 +5,80 @@ if [ ! -e /media/DATOS ]; then
         exit 0
 fi
 
-if [ -e /home/alumno/Vídeos ]; then
-        rm -rf /home/alumno/Vídeos
-        echo "Borrando carpeta Vídeos"
+if [ ! -e "/media/DATOS/Mis Cosas" ]; then
+		mkdir "/media/DATOS/Mis Cosas" 
+        echo "Creando carpeta Mis Cosas"
 fi
 
-for i in Descargas Música Documentos Imágenes Videos; do
-        if [ -e /home/alumno/$i ]; then
-                rm -rf /home/alumno/$i
-                echo "Borrando carpeta $i"
-        fi;
+for i in Descargas Música Documentos Imágenes Videos Vídeos; do
+	case $i in
+		Descargas) 
+			if [ -e /home/alumno/$i ]; then
+				echo "Moviendo carpeta $i"
+				if [ -e "/media/DATOS/Mis Cosas/Descargas" ]; then
+					mv -f /home/alumno/$i/* "/media/DATOS/Mis Cosas/Descargas/"
+					rm -R /home/alumno/$i
+				else
+					mv -f /home/alumno/$i "/media/DATOS/Mis Cosas/Descargas"
+				fi;             
+        	fi;
+		;;
+		Música)
+			if [ -e /home/alumno/$i ]; then
+                echo "Moviendo carpeta $i"
+				if [ -e "/media/DATOS/Mis Cosas/Mi música" ]; then
+					mv -f /home/alumno/$i/* "/media/DATOS/Mis Cosas/Mi música/"
+					rm -R /home/alumno/$i
+				else
+					mv -f /home/alumno/$i "/media/DATOS/Mis Cosas/Mi música"
+				fi; 
+        	fi;
+		;;
+		Documentos)
+			if [ -e /home/alumno/$i ]; then
+                echo "Moviendo carpeta $i"
+				if [ -e "/media/DATOS/Mis Cosas/Mis documentos" ]; then
+					mv -f /home/alumno/$i/* "/media/DATOS/Mis Cosas/Mis documentos/"
+					rm -R /home/alumno/$i
+				else
+					mv -f /home/alumno/$i "/media/DATOS/Mis Cosas/Mis documentos"
+				fi;
+        	fi;
+		;;
+		Imágenes)
+			if [ -e /home/alumno/$i ]; then
+                echo "Moviendo carpeta $i"
+				if [ -e "/media/DATOS/Mis Cosas/Mis imágenes" ]; then
+					mv -f /home/alumno/$i/* "/media/DATOS/Mis Cosas/Mis imágenes/"
+					rm -R /home/alumno/$i
+				else
+					mv -f /home/alumno/$i "/media/DATOS/Mis Cosas/Mis imágenes"
+				fi;
+        	fi;
+		;;
+		Videos)
+			if [ -e /home/alumno/$i ]; then
+                echo "Moviendo carpeta $i"
+				if [ -e "/media/DATOS/Mis Cosas/Mis vídeos" ]; then
+					mv -f /home/alumno/$i/* "/media/DATOS/Mis Cosas/Mis vídeos/"
+					rm -R /home/alumno/$i
+				else
+					mv -f /home/alumno/$i "/media/DATOS/Mis Cosas/Mis vídeos"
+				fi;
+        	fi;
+		;;
+		Vídeos)
+			if [ -e /home/alumno/$i ]; then
+                echo "Moviendo carpeta $i"
+				if [ -e "/media/DATOS/Mis Cosas/Mis vídeos" ]; then
+					mv -f /home/alumno/$i/* "/media/DATOS/Mis Cosas/Mis vídeos/"
+					rm -R /home/alumno/$i
+				else
+					mv -f /home/alumno/$i "/media/DATOS/Mis Cosas/Mis vídeos"
+				fi;
+        	fi;
+		;;
+	  esac
 done
 
 ln -s "/media/DATOS/Mis Cosas/Descargas/" /home/alumno/Descargas

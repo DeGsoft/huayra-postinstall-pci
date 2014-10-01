@@ -1,6 +1,6 @@
 #!/bin/bash
 
-zenity --info --text "Por favor, busque e instale las actualizaciones disponibles. 
+zenity --info --width=320 --height=240 --text "Por favor, busque e instale las actualizaciones disponibles. 
 A través del menú, en Herramientas del sistema -> Actualizaciones de software 
 Desde una consola, ejecute: 
 sudo apt-get update
